@@ -25,7 +25,7 @@ while loop:#跳出该循环等于退出游戏
             # game_1(initColors)
         elif c2==2:
             # todo:读取旧游戏数据,然后开始
-            print("hello")
+            print("hello,1")
             waitWindows(initColors)
             # game_1(initColors)
     elif c==2:
