@@ -1,3 +1,6 @@
+'''
+选择窗口
+'''
 # 竞技模式选择窗口
 import sys
 import pygame
