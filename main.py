@@ -1,3 +1,6 @@
+'''
+游戏入口
+'''
 import pygame,sys, time, random
 from pygame.locals import *
 
