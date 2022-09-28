@@ -29,7 +29,7 @@ while loop:#跳出该循环等于退出游戏
             waitWindows(initColors)
             # game_1(initColors)
     elif c==2:
-        print("创造模式")
+        print("创造模式?")
         #调用game2
         game_1(initColors)
     else:
