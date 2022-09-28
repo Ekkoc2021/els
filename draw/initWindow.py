@@ -49,7 +49,7 @@ def iniTdraw(screen, colors, grade):
     gradeFont = pygame.freetype.Font("C:\Windows\Fonts\simkai.ttf", 36)
     gradeFont.render_to(screen, (470, 405), "分数:" + str(grade), (0, 0, 0), 0)
 '''
-:param 窗口对象,RGB元组,位置+尺寸的元组,字体对象,
+:param 窗口对象,RGB元组,位置+尺寸的元组,字体对象
 '''
 def drawButton(screen,lable,color,Loc_Dim,bfont):
     #loc_Dim=(x,y,w,h)
