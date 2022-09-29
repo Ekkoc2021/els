@@ -6,7 +6,7 @@ from pygame.locals import *
 
 from chooseWindows.choose import *
 from gameWindow.game1 import game_1
-from waitWindow.waitW import waitWindows
+from rankWindow.rankWindow import rankWindows
 
 pygame.init()
 
@@ -29,7 +29,7 @@ while loop:#跳出该循环等于退出游戏
         elif c2==2:
             # todo:读取旧游戏数据,然后开始
             print("hello,1")
-            waitWindows(initColors)
+            rankWindows(initColors)#完成数据读取,并显示
             # game_1(initColors)
     elif c==2:
         print("创造模式?")
