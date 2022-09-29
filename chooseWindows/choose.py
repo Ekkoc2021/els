@@ -8,6 +8,7 @@ from pygame import *
 
 
 # 模式选择窗口
+from data_io.input_data import input_rank
 from draw.initWindow import drawButton
 
 
@@ -105,14 +106,13 @@ def choose2(bgColor):
                     return 2
                 # 200, 450, 300, 70 排名
                 if 200 <= event.pos[0] <= 500 and 450 <= event.pos[1] <= 520:
-                    print("排名信息:")
-
+                    return 4
                 # 200, 545, 300, 70 退出
                 if 200 <= event.pos[0] <= 500 and 545 <= event.pos[1] <= 615:
-                    return 4
+                    return 5
             elif event.type == KEYDOWN:
                 if event.key == K_ESCAPE:
-                    return 4
+                    return 5
         screen.fill(bgColor)
         Font.render_to(screen, (180, 98), "俄罗斯方块", (0, 0, 0), 0)
         # def drawButton(screen,lable,color,Loc_Dim,bfont):
@@ -121,3 +121,4 @@ def choose2(bgColor):
         drawButton(screen, "  排名", button_c[2], (200, 450, 300, 70), Font)
         drawButton(screen, "  退出", button_c[3], (200, 545, 300, 70), Font)
         pygame.display.update()
+
