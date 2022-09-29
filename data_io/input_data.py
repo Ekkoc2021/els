@@ -8,7 +8,7 @@ import pickle
 '''
 def input_rank():
     try:
-        f2=open("resource/gamedata.properties", "rb")
+        f2=open("resource/rank.properties", "rb")
         l=pickle.load(f2)
         f2.close()
         return l
@@ -30,4 +30,3 @@ def input_gamedata():
         return None
 # l=input_()
 # print(l)
-print(input_gamedata())
