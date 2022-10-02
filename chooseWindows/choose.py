@@ -11,14 +11,13 @@ from pygame import *
 from data_io.input_data import input_rank
 from draw.initWindow import drawButton
 
-
 def choose1(bgColor):
     fpsClock = pygame.time.Clock()
     screen = pygame.display.set_mode((700, 760))
     screen.fill(bgColor)
-    Font = pygame.freetype.Font("C:\Windows\Fonts\simkai.ttf", 72)
     button_c = [1, 1, 1]
-
+    Font = pygame.freetype.Font("C:\Windows\Fonts\STXINWEI.TTF", 72)
+    tytleFont = pygame.freetype.Font("C:\Windows\Fonts\STHUPO.TTF", 100)
     pygame.display.flip()
     while True:
         for event in pygame.event.get():
@@ -55,11 +54,11 @@ def choose1(bgColor):
                 if event.key == K_ESCAPE:
                     return 3
         screen.fill(bgColor)
-        Font.render_to(screen, (180, 98), "俄罗斯方块", (0, 0, 0), 0)
+        tytleFont.render_to(screen, (100, 70), "俄罗斯方块", (0, 0, 0), 0)
         # def drawButton(screen,lable,color,Loc_Dim,bfont):
         drawButton(screen, "竞技模式", button_c[0], (200, 240, 300, 70), Font)
         drawButton(screen, "创造模式", button_c[1], (200, 345, 300, 70), Font)
-        drawButton(screen, "  退出", button_c[2], (200, 450, 300, 70), Font)
+        drawButton(screen, "    退出", button_c[2], (200, 450, 300, 70), Font)
         pygame.display.update()
 
 
@@ -68,7 +67,8 @@ def choose2(bgColor):
     fpsClock = pygame.time.Clock()
     screen = pygame.display.set_mode((700, 760))
     screen.fill(bgColor)
-    Font = pygame.freetype.Font("C:\Windows\Fonts\simkai.ttf", 72)
+    Font = pygame.freetype.Font("C:\Windows\Fonts\STXINWEI.TTF", 72)
+    tytleFont=pygame.freetype.Font("C:\Windows\Fonts\STHUPO.TTF", 100)
     button_c = [1, 1, 1, 1]
     pygame.display.flip()
     while True:
@@ -114,11 +114,11 @@ def choose2(bgColor):
                 if event.key == K_ESCAPE:
                     return 5
         screen.fill(bgColor)
-        Font.render_to(screen, (180, 98), "俄罗斯方块", (0, 0, 0), 0)
+        tytleFont.render_to(screen, (100, 70), "俄罗斯方块", (0, 0, 0), 0)
         # def drawButton(screen,lable,color,Loc_Dim,bfont):
-        drawButton(screen, " 新游戏", button_c[0], (200, 240, 300, 70), Font)
+        drawButton(screen, "  新游戏", button_c[0], (200, 240, 300, 70), Font)
         drawButton(screen, "继续游戏", button_c[1], (200, 345, 300, 70), Font)
-        drawButton(screen, "  排名", button_c[2], (200, 450, 300, 70), Font)
-        drawButton(screen, "  退出", button_c[3], (200, 545, 300, 70), Font)
+        drawButton(screen, "    排名", button_c[2], (200, 450, 300, 70), Font)
+        drawButton(screen, "    退出", button_c[3], (200, 545, 300, 70), Font)
         pygame.display.update()
 
