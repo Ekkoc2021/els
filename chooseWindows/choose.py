@@ -61,7 +61,6 @@ def choose1(bgColor):
         drawButton(screen, "    退出", button_c[2], (200, 450, 300, 70), Font)
         pygame.display.update()
 
-
 # 竞技模式选择窗口:新游戏,继续游戏,排名,退出
 def choose2(bgColor):
     fpsClock = pygame.time.Clock()

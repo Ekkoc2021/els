@@ -60,8 +60,6 @@ def loadGameW(initColors):
             pygame.display.update()
 
 
-
-
 def loadRankW(initColors):
     fpsClock = pygame.time.Clock()
     screen = pygame.display.set_mode((700, 760))
