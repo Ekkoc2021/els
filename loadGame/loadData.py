@@ -1,6 +1,7 @@
 '''
 读取数据时的等待窗口
 '''
+import random
 import sys
 
 import pygame
@@ -8,19 +9,18 @@ from pygame import QUIT, MOUSEBUTTONDOWN, MOUSEMOTION, KEYDOWN, K_ESCAPE
 from data_io.input_data import input_gamedata, input_rank
 
 def identity(gamedata):
-    if type(gamedata).__name__=="list":
-        try:
-            for k in gamedata:
-                if len(k)!=10:
+    try:
+        if gamedata!=None and type(gamedata).__name__=="list":
+            for i in range(200):
+                if type(gamedata[random.randint(1,17)][0]).__name__!="bool" \
+                        and type(gamedata[random.randint(1,17)][random.randint(1,8)][0]).__name__!="bool" \
+                        and type(gamedata[random.randint(1, 17)][random.randint(1, 8)][1]).__name__ != "list" :
                     return False
-                for i in k:
-                    if len(gamedata[i])!=17:
-                        return False
-        except:
+            return True
+        else :
             return False
-    else :
+    except:
         return False
-
 def loadGameW(initColors):
     fpsClock = pygame.time.Clock()
     screen = pygame.display.set_mode((700, 760))
@@ -99,7 +99,7 @@ def loadRankW(initColors):
             Font3.render_to(screen, (150, 110), "      日期                 分数", (0, 0, 0), 0)
             x = 0
             for i in l:
-                Font4.render_to(screen, (150, 160 + x * 50), i[0] + ":  " + str(i[1]), (0, 0, 0), 0)
+                Font4.render_to(screen, (150, 160 + x * 50), str(x+1)+":"+i[0] + ":  " + str(i[1]), (0, 0, 0), 0)
                 x += 1
         else:
             Font.render_to(screen, (150, 240), "文件数据错误", (0, 0, 0), 0)

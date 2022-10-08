@@ -12,7 +12,6 @@ from data_io.input_data import input_rank
 from draw.initWindow import drawButton
 
 def choose1(bgColor):
-    fpsClock = pygame.time.Clock()
     screen = pygame.display.set_mode((700, 760))
     screen.fill(bgColor)
     button_c = [1, 1, 1]
@@ -63,7 +62,6 @@ def choose1(bgColor):
 
 # 竞技模式选择窗口:新游戏,继续游戏,排名,退出
 def choose2(bgColor):
-    fpsClock = pygame.time.Clock()
     screen = pygame.display.set_mode((700, 760))
     screen.fill(bgColor)
     Font = pygame.freetype.Font("C:\Windows\Fonts\STXINWEI.TTF", 72)
@@ -120,4 +118,3 @@ def choose2(bgColor):
         drawButton(screen, "    排名", button_c[2], (200, 450, 300, 70), Font)
         drawButton(screen, "    退出", button_c[3], (200, 545, 300, 70), Font)
         pygame.display.update()
-

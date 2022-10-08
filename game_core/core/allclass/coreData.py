@@ -1,11 +1,34 @@
+import datetime
+
 import pygame
 
+from data_io.output_data import output_gamedata
 from game_core.core.abstract.abstractCoreData import abstractGameData
+from test.hello import gameData
 
 
 class GameData(abstractGameData):
-    def __init__(self, gamedata):
-        self.gameData = gamedata
+    def __init__(self):
+        self.gameData = None
+        self.ReSetGameData()
+
+    def saveData(self):
+        output_gamedata(self.gameData)
+    def ReSetGameData(self):
+        gamedata = []
+        DataC = [0] * 4
+        gamedata.append(DataC)
+        for i in range(1, 18):
+            DataC = [False]
+            for j in range(0, 8):
+                DataC.append([-1, [80 + j * 40, 40 + (i - 1) * 40]])
+            gamedata.append(DataC)
+        t = datetime.datetime.now()
+        s = t.strftime('%Y-%m-%d %H:%M:%S')
+        gamedata[0][0] = s
+        gamedata[0][1] = 0
+        gamedata[0][2] = [None] * 3
+        self.gameData=gamedata
 
     def Paint(self, screen, allcolors):
         for i in range(1, 18):

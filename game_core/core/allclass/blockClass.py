@@ -302,25 +302,18 @@ class Block_2(AbstractBlock):
         #todo:写入数据有bug
         #需要根据不同状态进行写入数据
         # 第i行 = y / 40, 第j列 = (x - 40) / 40
-        i = int(self.block[1] / 40)
-        j = int((self.block[0] - 40) / 40)
-        g = gameD.gameData
+        x = self.block[0]
+        y = self.block[1]
         if self.shape==0:#竖着
-            i1=i-2
-            for p in range(4):
-                g[i1+p][0]=True
-                print("i1",i1)
-                print(i)
-                print(self.block)
-                print("i+p",i1+p)
-                print(j)
-                g[i1+p][j][0]=self.co
+            # i
+            # i
+            # i(定位点)
+            # i
+            for i in range(4):
+                gameD.writeDate(x,y-40-40+i*40,self.co)
         else:#横着
-            j1=j-2
-            #理论上不会出现越界,方块长度最长4格,每次都会检测
-            for p in range(4):
-                g[i][0]=True
-                g[i][j1+p][0]=self.co
+            for i in range(4):
+                gameD.writeDate(x-40-40+i*40,y,self.co)
 
 
 
@@ -329,7 +322,7 @@ class Block_2(AbstractBlock):
 #   None None(点位点)
 class Block_3(AbstractBlock):
     def __init__(self,color=3):
-        self.shape=3
+        self.shape=0
         self.co=color
         self.block=[240,120]
 

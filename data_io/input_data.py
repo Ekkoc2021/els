@@ -27,3 +27,8 @@ def input_gamedata():
 '''
 def input_ALLCOLORS():
     return input_data("resource/ALLCOLORS.properties")
+'''
+读取配置文件中的数据用于存放,当前游戏数据
+'''
+def input_setting():
+    return input_data("resource/setting.properties")
