@@ -32,9 +32,9 @@ class Block_1(AbstractBlock):
         for i in range(0, 2):
             for j in range(0, 2):
                 pygame.draw.rect(screen, allcolors[self.block[i][j][0]],
-                                 (self.block[i][j][1][0], self.block[i][j][1][1], 40, 40))
+                                 (self.block[i][j][1][0], self.block[i][j][1][1], 40, 40),border_radius=5)
                 pygame.draw.rect(screen, (0, 0, 0),
-                                 (self.block[i][j][1][0], self.block[i][j][1][1], 41, 41), 1)
+                                 (self.block[i][j][1][0], self.block[i][j][1][1], 41, 41), 1,border_radius=5)
 
     def horiMove(self, gameD, dirc):
         # 第i行 = y / 40, 第j列 = (x - 40) / 40
@@ -109,14 +109,14 @@ class Block_1(AbstractBlock):
         g[int(b4[1] / 40)][int((b4[0] - 40) / 40)][0] = self.co
 
     def drawInForeshow(self, screen, allcolors):
-        pygame.draw.rect(screen, allcolors[self.co], (510, 160, 40, 40))
-        pygame.draw.rect(screen, allcolors[self.co], (550, 160, 40, 40))
-        pygame.draw.rect(screen, allcolors[self.co], (510, 200, 40, 40))
-        pygame.draw.rect(screen, allcolors[self.co], (550, 200, 40, 40))
-        pygame.draw.rect(screen, (0, 0, 0), (550, 200, 41, 41), 1)
-        pygame.draw.rect(screen, (0, 0, 0), (510, 200, 41, 41), 1)
-        pygame.draw.rect(screen, (0, 0, 0), (550, 160, 41, 41), 1)
-        pygame.draw.rect(screen, (0, 0, 0), (510, 160, 41, 41), 1)
+        pygame.draw.rect(screen, allcolors[self.co], (510, 160, 40, 40),border_radius=5)
+        pygame.draw.rect(screen, allcolors[self.co], (550, 160, 40, 40),border_radius=5)
+        pygame.draw.rect(screen, allcolors[self.co], (510, 200, 40, 40),border_radius=5)
+        pygame.draw.rect(screen, allcolors[self.co], (550, 200, 40, 40),border_radius=5)
+        pygame.draw.rect(screen, (0, 0, 0), (550, 200, 41, 41), 1,border_radius=5)
+        pygame.draw.rect(screen, (0, 0, 0), (510, 200, 41, 41), 1,border_radius=5)
+        pygame.draw.rect(screen, (0, 0, 0), (550, 160, 41, 41), 1,border_radius=5)
+        pygame.draw.rect(screen, (0, 0, 0), (510, 160, 41, 41), 1,border_radius=5)
 
 
 # i
@@ -131,9 +131,9 @@ class Block_2(AbstractBlock):
 
     def drawInForeshow(self, screen, allcolors):
         for i in range(4):
-            pygame.draw.rect(screen, allcolors[self.co], (550, 120 + i * 40, 40, 40))
+            pygame.draw.rect(screen, allcolors[self.co], (550, 120 + i * 40, 40, 40),border_radius=5)
         for i in range(4):
-            pygame.draw.rect(screen, (0, 0, 0), (550, 120 + i * 40, 41, 41), 1)
+            pygame.draw.rect(screen, (0, 0, 0), (550, 120 + i * 40, 41, 41), 1,border_radius=5)
 
     def changeShape(self, gameD):
         # 把当前位置对应在gameD中的映射找到,判断是否能变换
@@ -287,16 +287,16 @@ class Block_2(AbstractBlock):
             y = self.block[1] - 80
             for i in range(4):
                 pygame.draw.rect(screen, allcolors[self.co],
-                                 (self.block[0], y + i * 40, 40, 40))
+                                 (self.block[0], y + i * 40, 40, 40),border_radius=5)
                 pygame.draw.rect(screen, (0, 0, 0),
-                                 (self.block[0], y + i * 40, 41, 41), 1)
+                                 (self.block[0], y + i * 40, 41, 41), 1,border_radius=5)
         else:
             x = self.block[0] - 80
             for i in range(4):
                 pygame.draw.rect(screen, allcolors[self.co],
-                                 (x + i * 40, self.block[1], 40, 40))
+                                 (x + i * 40, self.block[1], 40, 40),border_radius=5)
                 pygame.draw.rect(screen, (0, 0, 0),
-                                 (x + i * 40, self.block[1], 41, 41), 1)
+                                 (x + i * 40, self.block[1], 41, 41), 1,border_radius=5)
 
     def writeData(self, gameD):
         #todo:写入数据有bug
@@ -348,37 +348,37 @@ class Block_3(AbstractBlock):
             #   i
             # i i(定位)
             for i in range(3):
-                pygame.draw.rect(screen, allcolors[self.co], (x, y-i*40, 40, 40))
-                pygame.draw.rect(screen, (0,0,0), (x, y-i*40, 41, 41),1)
-            pygame.draw.rect(screen, allcolors[self.co], (x-40, y, 40, 40))
-            pygame.draw.rect(screen, (0,0,0), (x-40, y, 41, 41),1)
+                pygame.draw.rect(screen, allcolors[self.co], (x, y-i*40, 40, 40),border_radius=5)
+                pygame.draw.rect(screen, (0,0,0), (x, y-i*40, 41, 41),1,border_radius=5)
+            pygame.draw.rect(screen, allcolors[self.co], (x-40, y, 40, 40),border_radius=5)
+            pygame.draw.rect(screen, (0,0,0), (x-40, y, 41, 41),1,border_radius=5)
         elif self.shape==1:
             #shepe=1
             # i
             # i(定位)i  i
             for i in range(3):
-                pygame.draw.rect(screen, allcolors[self.co], (x + i * 40, y, 40, 40))
-                pygame.draw.rect(screen, (0, 0, 0), (x+ i * 40, y , 41, 41), 1)
-            pygame.draw.rect(screen, allcolors[self.co], (x , y-40, 40, 40))
-            pygame.draw.rect(screen, (0, 0, 0), (x, y-40, 41, 41), 1)
+                pygame.draw.rect(screen, allcolors[self.co], (x + i * 40, y, 40, 40),border_radius=5)
+                pygame.draw.rect(screen, (0, 0, 0), (x+ i * 40, y , 41, 41), 1,border_radius=5)
+            pygame.draw.rect(screen, allcolors[self.co], (x , y-40, 40, 40),border_radius=5)
+            pygame.draw.rect(screen, (0, 0, 0), (x, y-40, 41, 41), 1,border_radius=5)
         elif self.shape==2:
             #    i(定位)i
             #    i
             #    i
             for i in range(3):
-                pygame.draw.rect(screen, allcolors[self.co], (x, y + i * 40, 40, 40))
-                pygame.draw.rect(screen, (0, 0, 0), (x, y + i * 40, 41, 41), 1)
-            pygame.draw.rect(screen, allcolors[self.co], (x+40, y, 40, 40))
-            pygame.draw.rect(screen, (0, 0, 0), (x+40, y, 41, 41), 1)
+                pygame.draw.rect(screen, allcolors[self.co], (x, y + i * 40, 40, 40),border_radius=5)
+                pygame.draw.rect(screen, (0, 0, 0), (x, y + i * 40, 41, 41), 1,border_radius=5)
+            pygame.draw.rect(screen, allcolors[self.co], (x+40, y, 40, 40),border_radius=5)
+            pygame.draw.rect(screen, (0, 0, 0), (x+40, y, 41, 41), 1,border_radius=5)
         else:
             #  3
             #  i i(定位)i
             #          i
             for i in range(3):
-                pygame.draw.rect(screen, allcolors[self.co], (x- i * 40, y , 40, 40))
-                pygame.draw.rect(screen, (0, 0, 0), (x- i * 40, y , 41, 41), 1)
-            pygame.draw.rect(screen, allcolors[self.co], (x , y+ 40, 40, 40))
-            pygame.draw.rect(screen, (0, 0, 0), (x , y+ 40, 41, 41), 1)
+                pygame.draw.rect(screen, allcolors[self.co], (x- i * 40, y , 40, 40),border_radius=5)
+                pygame.draw.rect(screen, (0, 0, 0), (x- i * 40, y , 41, 41), 1,border_radius=5)
+            pygame.draw.rect(screen, allcolors[self.co], (x , y+ 40, 40, 40),border_radius=5)
+            pygame.draw.rect(screen, (0, 0, 0), (x , y+ 40, 41, 41), 1,border_radius=5)
 
     def horiMove(self, gameD, dire):
         # 第i行 = int(y / 40), 第j列 =int( (x - 40) / 40)
@@ -699,10 +699,10 @@ class Block_3(AbstractBlock):
         #   i
         # i i(定位)
         for i in range(3):
-            pygame.draw.rect(screen, allcolors[self.co], (550, 200 - i * 40, 40, 40))
-            pygame.draw.rect(screen, (0, 0, 0), (550, 200 - i * 40, 41, 41), 1)
-        pygame.draw.rect(screen, allcolors[self.co], (550 - 40, 200, 40, 40))
-        pygame.draw.rect(screen, (0, 0, 0), (550 - 40, 200, 41, 41), 1)
+            pygame.draw.rect(screen, allcolors[self.co], (550, 200 - i * 40, 40, 40),border_radius=5)
+            pygame.draw.rect(screen, (0, 0, 0), (550, 200 - i * 40, 41, 41), 1,border_radius=5)
+        pygame.draw.rect(screen, allcolors[self.co], (550 - 40, 200, 40, 40),border_radius=5)
+        pygame.draw.rect(screen, (0, 0, 0), (550 - 40, 200, 41, 41), 1,border_radius=5)
 
     def changeShape(self, gameD):
         x=self.block[0]
@@ -788,44 +788,44 @@ class Block_5(AbstractBlock):
     def drawBlock(self, screen, allcolors):
         if self.shape==0:
             pygame.draw.rect(screen, allcolors[self.co],
-                             (self.block[0],self.block[1], 40, 40))
+                             (self.block[0],self.block[1], 40, 40),border_radius=5)
             pygame.draw.rect(screen, (0, 0, 0),
-                             (self.block[0], self.block[1], 41, 41), 1)
+                             (self.block[0], self.block[1], 41, 41), 1,border_radius=5)
 
             pygame.draw.rect(screen, allcolors[self.co],
-                             (self.block[0], self.block[1]-40, 40, 40))
+                             (self.block[0], self.block[1]-40, 40, 40),border_radius=5)
             pygame.draw.rect(screen, (0, 0, 0),
-                             (self.block[0], self.block[1]-40, 41, 41), 1)
+                             (self.block[0], self.block[1]-40, 41, 41), 1,border_radius=5)
 
             pygame.draw.rect(screen, allcolors[self.co],
-                             (self.block[0]+40, self.block[1], 40, 40))
+                             (self.block[0]+40, self.block[1], 40, 40),border_radius=5)
             pygame.draw.rect(screen, (0, 0, 0),
-                             (self.block[0]+40, self.block[1], 41, 41), 1)
+                             (self.block[0]+40, self.block[1], 41, 41), 1,border_radius=5)
 
             pygame.draw.rect(screen, allcolors[self.co],
-                             (self.block[0]-40, self.block[1]-40, 40, 40))
+                             (self.block[0]-40, self.block[1]-40, 40, 40),border_radius=5)
             pygame.draw.rect(screen, (0, 0, 0),
-                             (self.block[0]-40, self.block[1]-40, 41, 41), 1)
+                             (self.block[0]-40, self.block[1]-40, 41, 41), 1,border_radius=5)
         else:
             pygame.draw.rect(screen, allcolors[self.co],
-                             (self.block[0], self.block[1], 40, 40))
+                             (self.block[0], self.block[1], 40, 40),border_radius=5)
             pygame.draw.rect(screen, (0, 0, 0),
-                             (self.block[0], self.block[1], 41, 41), 1)
+                             (self.block[0], self.block[1], 41, 41), 1,border_radius=5)
 
             pygame.draw.rect(screen, allcolors[self.co],
-                             (self.block[0], self.block[1] +40, 40, 40))
+                             (self.block[0], self.block[1] +40, 40, 40),border_radius=5)
             pygame.draw.rect(screen, (0, 0, 0),
-                             (self.block[0], self.block[1] +40, 41, 41), 1)
+                             (self.block[0], self.block[1] +40, 41, 41), 1,border_radius=5)
 
             pygame.draw.rect(screen, allcolors[self.co],
-                             (self.block[0]+40 , self.block[1], 40, 40))
+                             (self.block[0]+40 , self.block[1], 40, 40),border_radius=5)
             pygame.draw.rect(screen, (0, 0, 0),
-                             (self.block[0]+40 , self.block[1], 41, 41), 1)
+                             (self.block[0]+40 , self.block[1], 41, 41), 1,border_radius=5)
 
             pygame.draw.rect(screen, allcolors[self.co],
-                             (self.block[0] + 40, self.block[1] - 40, 40, 40))
+                             (self.block[0] + 40, self.block[1] - 40, 40, 40),border_radius=5)
             pygame.draw.rect(screen, (0, 0, 0),
-                             (self.block[0] + 40, self.block[1] - 40, 41, 41), 1)
+                             (self.block[0] + 40, self.block[1] - 40, 41, 41), 1,border_radius=5)
     def horiMove(self, gameD, dirc):
         x=self.block[0]
         y=self.block[1]
@@ -1045,23 +1045,23 @@ class Block_5(AbstractBlock):
 
 
     def drawInForeshow(self, screen, allcolors):
-        pygame.draw.rect(screen, allcolors[self.co], (550, 200 , 40, 40))
-        pygame.draw.rect(screen, (0, 0, 0), (550, 200, 41, 41), 1)
+        pygame.draw.rect(screen, allcolors[self.co], (550, 200 , 40, 40),border_radius=5)
+        pygame.draw.rect(screen, (0, 0, 0), (550, 200, 41, 41), 1,border_radius=5)
 
         pygame.draw.rect(screen, allcolors[self.co],
-                         (550, 200 - 40, 40, 40))
+                         (550, 200 - 40, 40, 40),border_radius=5)
         pygame.draw.rect(screen, (0, 0, 0),
-                         (550, 200 - 40, 41, 41), 1)
+                         (550, 200 - 40, 41, 41), 1,border_radius=5)
 
         pygame.draw.rect(screen, allcolors[self.co],
-                         (550 + 40, 200, 40, 40))
+                         (550 + 40, 200, 40, 40),border_radius=5)
         pygame.draw.rect(screen, (0, 0, 0),
-                         (550 + 40, 200, 41, 41), 1)
+                         (550 + 40, 200, 41, 41), 1,border_radius=5)
 
         pygame.draw.rect(screen, allcolors[self.co],
-                         (550 - 40, 200 - 40, 40, 40))
+                         (550 - 40, 200 - 40, 40, 40),border_radius=5)
         pygame.draw.rect(screen, (0, 0, 0),
-                         (550 - 40, 200 - 40, 41, 41), 1)
+                         (550 - 40, 200 - 40, 41, 41), 1,border_radius=5)
 
     def changeShape(self, gameD):
         x = self.block[0]
@@ -1170,39 +1170,39 @@ class Block_7(AbstractBlock):
     def drawInForeshow(self, screen, allcolors):
         for i in range(3):
             pygame.draw.rect(screen, allcolors[self.co],
-                             (550 - 40 + i * 40, 200, 40, 40))
+                             (550 - 40 + i * 40, 200, 40, 40),border_radius=5)
             pygame.draw.rect(screen, (0, 0, 0),
-                             (550 - 40 + i * 40, 200, 41, 41), 1)
+                             (550 - 40 + i * 40, 200, 41, 41), 1,border_radius=5)
         pygame.draw.rect(screen, allcolors[self.co],
-                         (550, 200 - 40, 40, 40))
+                         (550, 200 - 40, 40, 40),border_radius=5)
         pygame.draw.rect(screen, (0, 0, 0),
-                         (550, 200 - 40, 41, 41), 1)
+                         (550, 200 - 40, 41, 41), 1,border_radius=5)
     def drawBlock(self, screen, allcolors):
         if self.shape==0:
             #        None
             #   None None(定位点) None
             for i in range(3):
                 pygame.draw.rect(screen, allcolors[self.co],
-                                 (self.block[0] - 40 + i * 40, self.block[1], 40, 40))
+                                 (self.block[0] - 40 + i * 40, self.block[1], 40, 40),border_radius=5)
                 pygame.draw.rect(screen, (0, 0, 0),
-                                 (self.block[0]-40+i*40, self.block[1], 41, 41), 1)
+                                 (self.block[0]-40+i*40, self.block[1], 41, 41), 1,border_radius=5)
             pygame.draw.rect(screen, allcolors[self.co],
-                             (self.block[0], self.block[1]-40, 40, 40))
+                             (self.block[0], self.block[1]-40, 40, 40),border_radius=5)
             pygame.draw.rect(screen, (0, 0, 0),
-                             (self.block[0], self.block[1]-40, 41, 41), 1)
+                             (self.block[0], self.block[1]-40, 41, 41), 1,border_radius=5)
         elif self.shape==1:
             #        None
             #(定位点) None None
             #        None
             for i in range(3):
                 pygame.draw.rect(screen, allcolors[self.co],
-                                 (self.block[0] , self.block[1]- 40 + i * 40, 40, 40))
+                                 (self.block[0] , self.block[1]- 40 + i * 40, 40, 40),border_radius=5)
                 pygame.draw.rect(screen, (0, 0, 0),
-                                 (self.block[0] , self.block[1]- 40 + i * 40, 41, 41), 1)
+                                 (self.block[0] , self.block[1]- 40 + i * 40, 41, 41), 1,border_radius=5)
             pygame.draw.rect(screen, allcolors[self.co],
-                             (self.block[0]+ 40, self.block[1] , 40, 40))
+                             (self.block[0]+ 40, self.block[1] , 40, 40),border_radius=5)
             pygame.draw.rect(screen, (0, 0, 0),
-                             (self.block[0]+ 40, self.block[1] , 41, 41), 1)
+                             (self.block[0]+ 40, self.block[1] , 41, 41), 1,border_radius=5)
         elif self.shape==2:
             #       (定位点)
             #   None None None
@@ -1210,26 +1210,26 @@ class Block_7(AbstractBlock):
 
             for i in range(3):
                 pygame.draw.rect(screen, allcolors[self.co],
-                                 (self.block[0] - 40 + i * 40, self.block[1], 40, 40))
+                                 (self.block[0] - 40 + i * 40, self.block[1], 40, 40),border_radius=5)
                 pygame.draw.rect(screen, (0, 0, 0),
-                                 (self.block[0] - 40 + i * 40, self.block[1], 41, 41), 1)
+                                 (self.block[0] - 40 + i * 40, self.block[1], 41, 41), 1,border_radius=5)
             pygame.draw.rect(screen, allcolors[self.co],
-                             (self.block[0], self.block[1]+40, 40, 40))
+                             (self.block[0], self.block[1]+40, 40, 40),border_radius=5)
             pygame.draw.rect(screen, (0, 0, 0),
-                             (self.block[0], self.block[1] + 40, 41, 41), 1)
+                             (self.block[0], self.block[1] + 40, 41, 41), 1,border_radius=5)
         elif self.shape==3:
             #        None
             #   None None  (定位点)
             #        None
             for i in range(3):
                 pygame.draw.rect(screen, allcolors[self.co],
-                                 (self.block[0], self.block[1] - 40 + i * 40, 40, 40))
+                                 (self.block[0], self.block[1] - 40 + i * 40, 40, 40),border_radius=5)
                 pygame.draw.rect(screen, (0, 0, 0),
-                                 (self.block[0], self.block[1] - 40 + i * 40, 41, 41), 1)
+                                 (self.block[0], self.block[1] - 40 + i * 40, 41, 41), 1,border_radius=5)
             pygame.draw.rect(screen, allcolors[self.co],
-                             (self.block[0] - 40, self.block[1], 40, 40))
+                             (self.block[0] - 40, self.block[1], 40, 40),border_radius=5)
             pygame.draw.rect(screen, (0, 0, 0),
-                             (self.block[0] - 40, self.block[1], 41, 41), 1)
+                             (self.block[0] - 40, self.block[1], 41, 41), 1,border_radius=5)
 
     def horiMove(self, gameD, dire):
         x = self.block[0]

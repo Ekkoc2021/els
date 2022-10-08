@@ -22,11 +22,12 @@ def iniTdraw(screen, colors, grade):
     introductionFont.render_to(screen, (460, 472), "按 键 说 明：", (0, 0, 0), 0)
     introductionFont.render_to(screen, (470, 502), " 1，← / A：左移动", (0, 0, 0), 0)
     introductionFont.render_to(screen, (470, 532), " 2，→ / D：右移动", (0, 0, 0), 0)
-    introductionFont.render_to(screen, (470, 562), " 3，↑ / W：顺时针旋转", (0, 0, 0), 0)
+    introductionFont.render_to(screen, (470, 562), " 3，↑ / W：图形更换形状", (0, 0, 0), 0)
     introductionFont.render_to(screen, (470, 592), " 4，↓ / S： 向下加速移动", (0, 0, 0), 0)
     introductionFont.render_to(screen, (470, 622), " 5，P：暂停", (0, 0, 0), 0)
     introductionFont.render_to(screen, (470, 652), " 6，Esc：结束游戏", (0, 0, 0), 0)
     introductionFont.render_to(screen, (470, 682), " 7，J：设置", (0, 0, 0), 0)
+    introductionFont.render_to(screen, (470, 712), " 8，空格：快速向下移动", (0, 0, 0), 0)
     #绘制线条
     pygame.draw.line(screen, linecolor, (80,0), (80,760), 1)
     pygame.draw.line(screen,linecolor, (400,0), (400,760), 1)
@@ -66,7 +67,53 @@ def iniTdraw(screen, colors, grade):
 '''
 :param 窗口对象,RGB元组,位置+尺寸的元组,字体对象
 '''
+def iniTdraw_2(screen, colors, grade):
+    #绘制图形提示框x=20+470,210-40=170
+    screen.fill(colors[3][0])
+    pygame.draw.rect(screen, (205,205,180),(470, 80, 200, 280))
+    #绘制游戏操作界面
+    pygame.draw.rect(screen, colors[3][1], (40, 0, 402, 762))
+    # 说明栏 470 472
+    introductionFont = pygame.freetype.Font("C:\Windows\Fonts\msyhl.ttc" ,20)
+    introductionFont.render_to(screen, (460, 442), "按 键 说 明：", (0, 0, 0), 0)
+    introductionFont.render_to(screen, (470, 482), " 1，← / A：左移动", (0, 0, 0), 0)
+    introductionFont.render_to(screen, (470, 512), " 2，→ / D：右移动", (0, 0, 0), 0)
+    introductionFont.render_to(screen, (470, 542), " 3，↑ / W：图形更换形状", (0, 0, 0), 0)
+    introductionFont.render_to(screen, (470, 572), " 4，↓ / S： 向下加速移动", (0, 0, 0), 0)
+    introductionFont.render_to(screen, (470, 602), " 5，P：暂停", (0, 0, 0), 0)
+    introductionFont.render_to(screen, (470, 632), " 6，Esc：结束游戏", (0, 0, 0), 0)
+    introductionFont.render_to(screen, (470, 662), " 7，J：设置", (0, 0, 0), 0)
+    introductionFont.render_to(screen, (470, 782), " 8，空格：快速向下移动", (0, 0, 0), 0)
+    introductionFont.render_to(screen, (470, 612), " 9，R：更换方块", (0, 0, 0), 0)
+    #绘制线条
+    pygame.draw.line(screen, linecolor, (80,0), (80,760), 1)
+    pygame.draw.line(screen,linecolor, (400,0), (400,760), 1)
+    pygame.draw.line(screen, linecolor, (40,720), (440,720), 1)
 
+    for i in range(0,18):
+        pygame.draw.line(screen, linecolor, (40,0+i*40), (80,0+i*40), 1)
+        pygame.draw.line(screen, linecolor, (400,0+i*40), (442,0+i*40), 1)
+        if i<5:
+            pygame.draw.line(screen, linecolor, (80, 0 + 40 * i), (440, 0 + 40 * i), 1)
+        if i<8:
+            pygame.draw.line(screen, linecolor, (120 + i * 40, 0), (120 + i * 40, 160), 1)
+        if i<7:
+            pygame.draw.line(screen, linecolor, (120+i*40,720), (120+i*40,760), 1)
+        if i<4:
+            pygame.draw.line(screen, linecolor, (510+i*40,80), (510+i*40,360), 1)
+        if i<6:
+            pygame.draw.line(screen, linecolor, (470,120+i*40), (670,120+i*40), 1)
+    #绘制按钮
+    bFont = pygame.freetype.Font("C:\Windows\Fonts\STXINWEI.TTF", 20)
+    drawButton(screen, "暂停", colors[0], (470, 15, 55, 25), bFont)
+    drawButton(screen,"退出", colors[1], (545, 15, 55, 25), bFont)
+    drawButton(screen, "设置", colors[2], (615, 15, 55, 25), bFont)
+    gradeFont = pygame.freetype.Font("C:\Windows\Fonts\STXINWEI.TTF", 36)
+    gradeFont.render_to(screen, (460, 405), "分数:" + str(grade), (0, 0, 0), 0)
+
+    #游戏界面边框
+    pygame.draw.rect(screen, (0, 0, 0), (38, -3, 406, 766), 3)
+    pygame.draw.rect(screen, (0,0,0), (468, 78, 203, 283),3)
 def drawButton(screen,lable,color,Loc_Dim,bfont):
     #loc_Dim=(x,y,w,h)
     if color==1:
