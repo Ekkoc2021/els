@@ -16,7 +16,8 @@ class GameData(abstractGameData):
         output_gamedata(self.gameData)
     def ReSetGameData(self):
         gamedata = []
-        DataC = [0] * 4
+        DataC = [0] * 5
+        #第一个数据是时间,第二个数据是分数,第三个数据是队列,第四个数据是下一方块出现时间,第五个是速度
         gamedata.append(DataC)
         for i in range(1, 18):
             DataC = [False]
@@ -36,9 +37,9 @@ class GameData(abstractGameData):
                 for j in range(1, 9):
                     if self.gameData[i][j][0] != -1:
                         pygame.draw.rect(screen, allcolors[self.gameData[i][j][0]],
-                                         (self.gameData[i][j][1][0], self.gameData[i][j][1][1], 40, 40))
+                                         (self.gameData[i][j][1][0], self.gameData[i][j][1][1], 40, 40),border_radius=5)
                         pygame.draw.rect(screen, (0, 0, 0),
-                                         (self.gameData[i][j][1][0], self.gameData[i][j][1][1], 41, 41), 1)
+                                         (self.gameData[i][j][1][0], self.gameData[i][j][1][1], 41, 41), 1,border_radius=5)
     '''
     得分了,重置gameData的数据,消除得分的行,分数+1
     '''
@@ -82,7 +83,15 @@ class GameData(abstractGameData):
                         t+=1
                         if t == 8:
                             re = True
-                            self.gameData[0][1] += 1
+                            #处理得分
+                            if self.gameData[0][4]==0.03:
+                                self.gameData[0][1] += 2
+                            elif self.gameData[0][4]==0.05:
+                                self.gameData[0][1] += 4
+                            elif self.gameData[0][4] == 0.08:
+                                self.gameData[0][1] += 6
+                            elif self.gameData[0][4] == 0.1:
+                                self.gameData[0][1] += 8
                             self.reset(i)
                             i += 1
             i-=1
