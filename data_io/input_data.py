@@ -27,5 +27,3 @@ def input_gamedata():
 '''
 def input_ALLCOLORS():
     return input_data("resource/ALLCOLORS.properties")
-
-# print(input_ALLCOLORS())

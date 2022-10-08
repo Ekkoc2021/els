@@ -67,6 +67,7 @@ def loadRankW(initColors):
     Font = pygame.freetype.Font("C:\Windows\Fonts\STXINGKA.TTF", 72)#基础大小
     Font2 = pygame.freetype.Font("C:\Windows\Fonts\STXINWEI.TTF", 50)#按钮字体大小
     Font3 = pygame.freetype.Font("C:\Windows\Fonts\STXINWEI.TTF", 40)#排名字体大小
+    Font4 = pygame.freetype.Font("C:\Windows\Fonts\STXINWEI.TTF", 30)  # 排名字体大小
     Font.render_to(screen, (150, 345), "读取排名中..", (0, 0, 0), 0)
     pygame.display.flip()
     l=input_rank()
@@ -95,10 +96,10 @@ def loadRankW(initColors):
         if isRead:
             Font.render_to(screen, (150, 20), "最新排名", (0, 0, 0), 0)
             pygame.draw.rect(screen, (225, 115, 115), (140, 90, 440, 600))
-            Font3.render_to(screen, (150, 110), "    日期       分数", (0, 0, 0), 0)
+            Font3.render_to(screen, (150, 110), "      日期                 分数", (0, 0, 0), 0)
             x = 0
             for i in l:
-                Font3.render_to(screen, (150, 150 + x * 40), i[0] + ":" + str(i[1]), (0, 0, 0), 0)
+                Font4.render_to(screen, (150, 160 + x * 50), i[0] + ":  " + str(i[1]), (0, 0, 0), 0)
                 x += 1
         else:
             Font.render_to(screen, (150, 240), "文件数据错误", (0, 0, 0), 0)
