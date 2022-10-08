@@ -16,9 +16,13 @@ def output_rank(rankdata):
 def output_gamedata(gamedata):
     return output_data("resource/gamedata.properties",gamedata)
 
+'''
+'''
 def output_allcolors(allcolor):
     return output_data("resource/ALLCOLORS.properties",allcolor)
 
+def output_setting(initColors):
+    return output_data("resource/setting.properties",initColors)
 # output_gamedata([1,2,3])
 # x=datetime.datetime.now()
 # d=str(x.year)+"."+str(x.month)+"."+str(x.day)+"."+str(x.hour)+"."+str(x.minute)
