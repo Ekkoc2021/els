@@ -16,9 +16,7 @@ python选修课大作业
 绘制的界面地址:https://js.design/f/M_udEd?p=ITCRjt7NTG
 仓库地址:https://github.com/Ekkoc2021/els
 
-大部分程序界面和ui数据没有太大差别,除了游戏背景制作的时候有较大的更改,改动如下面这张图
-
-![1665292568852](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\1665292568852.png)
+大部分程序界面和ui数据没有太大差别,除了游戏背景制作的时候有较大的更改
 
 总共合并了5次,每一次合并都有很大的改动,第4次是最难的部分
 前3次就照着ui的数据写
@@ -32,27 +30,19 @@ python选修课大作业
 
 提供了两种模式选择:竞技模式游戏的数据是被记录,创造模式的游戏数据不被记录,创造模式游戏过程中可以根据需要调整方块的种类
 
-![1665293873617](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\1665293873617.png)
-
 
 
 ### 竞技模式选择界面
 
 可以查看排名,开始新游戏,继续上次的游戏(只会保存上次没有结束的游戏),查看排名,退出竞技模式
 
-![1665294929607](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\1665294929607.png)
-
 ### 新游戏==>速度选择界面
 
 不同的速度对应着不同的加分
 
-![1665295059406](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\1665295059406.png)
-
 ### 设置
 
 点击对应按钮,按钮颜色对应着对应的界面颜色,然后保存;实际界面还有一个取消
-
-![1665298647696](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\1665298647696.png)
 
 ## 游戏核心实现
 
