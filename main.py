@@ -7,7 +7,7 @@ pygame.init()
 
 #-----读游戏默认配置数据---
 allcolors=input_ALLCOLORS()#读取颜色表
-print(len(allcolors))
+# print(len(allcolors))
 initColors=input_setting()
 if initColors is  None:
     initColors=[(3,168,158), (135, 206, 235),allcolors]#背景颜色,操作界面颜色,所有颜色表
