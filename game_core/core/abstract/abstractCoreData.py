@@ -1,9 +1,26 @@
 from abc import ABC,abstractmethod
 class abstractGameData:
     '''
-    判断得分与否,得分重置gamedata的数据
+    写入数据:方块生命周期结束需要写入数据,提供坐标和颜色即可
     '''
+    def writeDate(self, x, y, co):
+        pass
 
+    '''
+    保存数据到硬盘
+    '''
+    def saveData(self):
+        pass
+
+    '''
+    清空数据
+    '''
+    def ReSetGameData(self):
+        pass
+
+    '''
+    判断得分与否,得分后消除对应行,重置gamedata的数据
+    '''
     @abstractmethod
     def isWin(self):
         pass
