@@ -4,7 +4,6 @@ import pygame
 
 from data_io.output_data import output_gamedata
 from game_core.core.abstract.abstractCoreData import abstractGameData
-from test.hello import gameData
 
 
 class GameData(abstractGameData):
