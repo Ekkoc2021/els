@@ -649,6 +649,7 @@ class Block_3(AbstractBlock):
             j2 = int((x - 40) / 40)
 
             if i2 < 18:
+                #todo:有bug2022/10/13
                 if  g[i1][j1 - 1][0] == -1 and g[i1][j1 - 2][0] == -1 and g[i2][j2][0]==-1:
                     self.block[1] = self.block[1] + 40 * speed
                     return True

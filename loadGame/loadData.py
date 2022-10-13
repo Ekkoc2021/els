@@ -7,7 +7,12 @@ import sys
 import pygame
 from pygame import QUIT, MOUSEBUTTONDOWN, MOUSEMOTION, KEYDOWN, K_ESCAPE
 from data_io.input_data import input_gamedata, input_rank
+from data_io.output_data import output_gamedata
+from game_core.core.allclass.coreData import GameData
 
+'''
+检查读取到的数据
+'''
 def identity(gamedata):
     try:
         if gamedata!=None and type(gamedata).__name__=="list":
@@ -21,6 +26,9 @@ def identity(gamedata):
             return False
     except:
         return False
+'''
+从硬盘上加载数据
+'''
 def loadGameW(initColors):
     fpsClock = pygame.time.Clock()
     screen = pygame.display.set_mode((700, 760))
@@ -29,9 +37,9 @@ def loadGameW(initColors):
     Font.render_to(screen, (150, 345), "读取游戏中..", (0, 0, 0), 0)
     pygame.display.flip()
     gamedata = input_gamedata()
-    identity(gamedata)
+    # output_gamedata(GameData().gamedate)
     #读取成功
-    if identity(gamedata):
+    if identity(gamedata):#检查数据
         return gamedata
     else :
         #读取失败
