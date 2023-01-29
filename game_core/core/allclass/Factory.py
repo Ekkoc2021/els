@@ -8,18 +8,25 @@ class blockFactory:
     def __init__(self) -> None:
         pass
 
-    def getRandomBlock(self):
+    def getRandomBlock(self,allcolors,playingcolor):
         i = random.randint(0, 4)
+        colorIndex=random.randint(0, 137)
+        ##  不能和操作界面背景一样! 需要多colorindex进行效验
+        while 0==0:
+            if allcolors[colorIndex][0]!=playingcolor[0] and allcolors[colorIndex][1]!=playingcolor[1] and allcolors[colorIndex][2]!=playingcolor[2]:
+                break
+            colorIndex = random.randint(0, 137)
+
         if i == 0:
-            return Block_1(random.randint(0, 137))
+            return Block_1(colorIndex)
         if i == 1:
-            return Block_2(random.randint(0, 137))
+            return Block_2(colorIndex)
         if i == 2:
-            return Block_5(random.randint(0, 137))
+            return Block_5(colorIndex)
         if i == 3:
-            return Block_3(random.randint(0, 137))
+            return Block_3(colorIndex)
         if i == 4:
-            return Block_7(random.randint(0, 100))
+            return Block_7(colorIndex)
     '''
     指定颜色的任意方块
     '''
