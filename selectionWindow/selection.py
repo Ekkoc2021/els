@@ -14,7 +14,7 @@ from draw.initWindow import drawButton
 def schema(bgColor):
     screen = pygame.display.set_mode((700, 760))
     screen.fill(bgColor)
-    button_c = [1, 1, 1]
+    button_c = [1, 1, 1,1]
     Font = pygame.freetype.Font("C:\Windows\Fonts\STXINWEI.TTF", 72)
     tytleFont = pygame.freetype.Font("C:\Windows\Fonts\STHUPO.TTF", 100)
     pygame.display.flip()
@@ -40,6 +40,11 @@ def schema(bgColor):
                     button_c[2] = 0
                 else:
                     button_c[2] = 1
+
+                if 200 <= event.pos[0] <= 500 and 555 <= event.pos[1] <= 625:
+                    button_c[3] = 0
+                else:
+                    button_c[3] = 1
             elif event.type == MOUSEBUTTONDOWN:
                 if 200 <= event.pos[0] <= 500 and 240 <= event.pos[1] <= 310:
                     return 1
@@ -49,15 +54,18 @@ def schema(bgColor):
                 # 200, 450, 300, 70
                 if 200 <= event.pos[0] <= 500 and 450 <= event.pos[1] <= 520:
                     return 3
+                if 200 <= event.pos[0] <= 500 and 555 <= event.pos[1] <= 625:
+                    return 4
             elif event.type == KEYDOWN:
                 if event.key == K_ESCAPE:
-                    return 3
+                    return 4
         screen.fill(bgColor)
         tytleFont.render_to(screen, (100, 70), "俄罗斯方块", (0, 0, 0), 0)
         # def drawButton(screen,lable,color,Loc_Dim,bfont):
         drawButton(screen, "竞技模式", button_c[0], (200, 240, 300, 70), Font)
         drawButton(screen, "创造模式", button_c[1], (200, 345, 300, 70), Font)
-        drawButton(screen, "    退出", button_c[2], (200, 450, 300, 70), Font)
+        drawButton(screen, "    设置", button_c[2], (200, 450, 300, 70), Font)
+        drawButton(screen, "    退出", button_c[3], (200, 555, 300, 70), Font)
         pygame.display.update()
 
 # 竞技模式选择窗口:新游戏,继续游戏,排名,退出
@@ -173,7 +181,7 @@ def speedSelection(bgColor):
 
             elif event.type == KEYDOWN:
                 if event.key == K_ESCAPE:
-                    return
+                    return 100
             screen.fill(bgColor)
             drawButton2(screen, "    普            通", c2[bu[0]], (250, 230, 205, 50))
             drawButton2(screen, "    中            级", c2[bu[1]], (250, 300, 205, 50))

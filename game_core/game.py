@@ -6,7 +6,7 @@ from pygame import *
 
 from data_io.input_data import input_rank
 from data_io.output_data import output_gamedata, output_rank, output_setting
-from draw.initWindow import iniTdraw, drawButton, iniTdraw_2
+from draw.initWindow import iniTdraw, drawButton
 from game_core.core.allclass.Factory import blockFactory
 from game_core.core.allclass.blockClass import Block_1, Block_2, Block_5, Block_3, Block_7
 
@@ -99,9 +99,9 @@ def playing(screen, colorsOp, gameD,isPause):
     # ['2022-10-05 20:50:42', 0, [None, None]]
     queue=gameD.gameData[0][2]
     if queue[0]==None:
-        queue[0]=factory.getRandomBlock()
-        queue[1]=factory.getRandomBlock()
-        queue[2]=factory.getRandomBlock()
+        queue[0]=factory.getRandomBlock(allcolors,colorsOp[3][1])
+        queue[1]=factory.getRandomBlock(allcolors,colorsOp[3][1])
+        queue[2]=factory.getRandomBlock(allcolors,colorsOp[3][1])
     fps=100
     #----------------------------------
     fpsClock = pygame.time.Clock()
@@ -185,7 +185,7 @@ def playing(screen, colorsOp, gameD,isPause):
         if not live:#如果方块消亡,向queue中添加方块,并为方块重新赋值
             #写入方块数据,同时获取新方块
             queue[0]. writeData(gameD)
-            queue.append(factory.getRandomBlock())
+            queue.append(factory.getRandomBlock(allcolors,colorsOp[3][1]))
             gameD.gameData[0][3]=1
             queue.pop(0)
         dirc=0
@@ -261,7 +261,10 @@ def pause(screen, colorsOp, gameD):
             pygame.display.update()
 
 def setting(screen, colorsOp,gameD):#colors的第5个元素是代表所有的颜色
-    #这里colorOp的数据格式相对复杂了点,对后续的代码书写难度加大了
+    # todo 2022 : 所有数据格式设计得和shit一样! 我会考虑重构
+    # 2023/1/29: 函数设计和shit一样,能跑就行,放弃重构!
+
+    #这里colorOp的数据格式的设计相对复杂了点,对后续的代码书写难度加大了
     # initColors = [(3, 168, 158), (135, 206, 235), allcolors]  # 背景颜色,操作界面颜色,所有颜色表
     # game_1(initColors, gameData)
     #  colorsOp = [1, 1, 1, initColors]  # 前三个操控按钮颜色,后一个是一个列表[界面颜色,操作界面颜色]
@@ -277,11 +280,12 @@ def setting(screen, colorsOp,gameD):#colors的第5个元素是代表所有的颜
     allcolor=colorsOp[3][2]
     allcolorLength=len(allcolor)
     playingBg=0
+    screenBg=0
+    # playingbg 和 screenbg 这里命名好像弄反了,这个问题出现的原因是:设计不够规范
     for i in allcolor:
         if i[0] == colorsOp[3][0][0] and i[1] == colorsOp[3][0][1] and i[2] == colorsOp[3][0][2]:
             break
         playingBg+=1
-    screenBg=0
     for i in allcolor:
         if i[0] == colorsOp[3][1][0] and i[1] == colorsOp[3][1][1] and i[2] == colorsOp[3][1][2]:
             break
@@ -344,6 +348,7 @@ def setting(screen, colorsOp,gameD):#colors的第5个元素是代表所有的颜
             elif event.type == KEYDOWN:
                 if event.key == K_ESCAPE:
                     return isQuit
+            # 对背景进行绘制
             iniTdraw(screen, colorsOp, grade)
             gameD.Paint(screen,allcolor)
             if gameD.gameData[0][3] > 100 and queue[1] is not None:
@@ -352,6 +357,8 @@ def setting(screen, colorsOp,gameD):#colors的第5个元素是代表所有的颜
                 gameD.gameData[0][2][0].drawBlock(screen, allcolor)
             if  queue[2] is not None:
                 queue[2]. drawInForeshow(screen, allcolor)
+
+            # 显示设置对应的按钮
             bfont = pygame.freetype.Font(font_s, 15)
             drawButton2(screen, "  操作界面颜色", allcolor[screenBgTemp], (250, 230, 205, 50))
             drawButton2(screen, "  游戏背景颜色", allcolor[playingBgTemp], (250, 300, 205, 50))
@@ -361,6 +368,104 @@ def setting(screen, colorsOp,gameD):#colors的第5个元素是代表所有的颜
                 pygame.draw.rect(screen, (255,255,255),(tipLocation[0],tipLocation[1],220,17),border_radius=4)
                 bfont.render_to(screen, (tipLocation[0],tipLocation[1]+2), "Tip:点击按钮进行更换背景颜色", (0, 0, 0), 0)
             pygame.display.update()
+
+
+def setting2(screen, colorsOp):
+    # 这里colorOp的数据格式相对复杂了点,对后续的代码书写难度加大了
+    # initColors = [(3, 168, 158), (135, 206, 235), allcolors]  # 背景颜色,操作界面颜色,所有颜色表
+    # game_1(initColors, gameData)
+    #  colorsOp = [1, 1, 1, initColors]  # 前三个操控按钮颜色,后一个是一个列表[界面颜色,操作界面颜色]
+    # 我以为colorOp的第5个元素是代表所有的颜色,实际是initc的第三个元素,也就是colorop的第四个的第三个
+    # setting(screen, colorsOp, grade)
+    # print(colorsOp[3][2][1])
+    # ----------
+    tytleFont=pygame.freetype.Font("C:\Windows\Fonts\STHUPO.TTF", 100)
+    colorsOp[2] = 1  # 设置的颜色恢复白色
+    allcolor = colorsOp[3][2]
+    allcolorLength = len(allcolor)
+    playingBg = 0
+    for i in allcolor:
+        if i[0] == colorsOp[3][0][0] and i[1] == colorsOp[3][0][1] and i[2] == colorsOp[3][0][2]:
+            break
+        playingBg += 1
+    screenBg = 0
+    for i in allcolor:
+        if i[0] == colorsOp[3][1][0] and i[1] == colorsOp[3][1][1] and i[2] == colorsOp[3][1][2]:
+            break
+        screenBg += 1
+
+    screen.fill(colorsOp[3][0])
+    # 提升作用域
+    playingBgTemp = playingBg
+    screenBgTemp = screenBg
+    # 提示
+    tipLocation = [0, 0, False]
+    # 保存取消按键的不同状态下的颜色
+    c2 = [(128, 128, 128), (255, 255, 255)]
+    save = 1
+    cancel = 1
+    allcolor = colorsOp[3][2]
+    while True:
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                pygame.quit()
+                sys.exit()
+            elif event.type == MOUSEMOTION:
+                if (250 <= event.pos[0] <= 455 and 230 <= event.pos[1] <= 280) \
+                        or (250 <= event.pos[0] <= 455 and 300 <= event.pos[1] <= 350):
+                    # 提示
+                    tipLocation[2] = True
+                    tipLocation[0] = event.pos[0]
+                    tipLocation[1] = event.pos[1] + 10
+                else:
+                    tipLocation[2] = False
+
+                # 250, 370, 205, 50
+                # 250, 440, 205, 50
+                if (250 <= event.pos[0] <= 455 and 370 <= event.pos[1] <= 420):
+                    save = 0
+                else:
+                    save = 1
+                if (250 <= event.pos[0] <= 455 and 440 <= event.pos[1] <= 490):
+                    cancel = 0
+                else:
+                    cancel = 1
+            elif event.type == MOUSEBUTTONDOWN:
+                if (250 <= event.pos[0] <= 455 and 230 <= event.pos[1] <= 280):
+                    screenBgTemp += 1
+                    if screenBgTemp >= allcolorLength:
+                        screenBgTemp = 0
+                if (250 <= event.pos[0] <= 455 and 300 <= event.pos[1] <= 350):
+                    playingBgTemp += 1
+                    if playingBgTemp >= allcolorLength:
+                        playingBgTemp = 0
+                if (250 <= event.pos[0] <= 455 and 370 <= event.pos[1] <= 420):
+                    # initColors = [allcolor[36], allcolor[97]]  # 背景颜色,操作界面颜色
+                    # colorsOp = [1, 1, 1, initColors, allcolor]
+                    colorsOp[3][0] = allcolor[playingBgTemp]
+                    colorsOp[3][1] = allcolor[screenBgTemp]
+                    output_setting(colorsOp[3])
+                    return
+                if (250 <= event.pos[0] <= 455 and 440 <= event.pos[1] <= 490):
+                    return
+
+            elif event.type == KEYDOWN:
+                if event.key == K_ESCAPE:
+                    return isQuit
+            # 对背景进行绘制
+            screen.fill(colorsOp[3][0])
+            tytleFont.render_to(screen, (100, 70), "俄罗斯方块", (0, 0, 0), 0)
+            # 显示设置对应的按钮
+            bfont = pygame.freetype.Font(font_s, 15)
+            drawButton2(screen, "  操作界面颜色", allcolor[screenBgTemp], (250, 230, 205, 50))
+            drawButton2(screen, "  游戏背景颜色", allcolor[playingBgTemp], (250, 300, 205, 50))
+            drawButton2(screen, "      保存设置 ", c2[save], (250, 370, 205, 50))
+            drawButton2(screen, "          取消 ", c2[cancel], (250, 440, 205, 50))
+            if tipLocation[2]:
+                pygame.draw.rect(screen, (255, 255, 255), (tipLocation[0], tipLocation[1], 220, 17), border_radius=4)
+                bfont.render_to(screen, (tipLocation[0], tipLocation[1] + 2), "Tip:点击按钮进行更换背景颜色", (0, 0, 0), 0)
+            pygame.display.update()
+
 
 def drawButton2(screen,lable,color,Loc_Dim):
     bfont = pygame.freetype.Font(font_s, 30)
@@ -450,9 +555,9 @@ def playing_2(screen, colorsOp, gameD,isPause):
     factory=blockFactory()
     queue=gameD.gameData[0][2]
     if queue[0]==None:
-        queue[0]=factory.getRandomBlock()
-        queue[1]=factory.getRandomBlock()
-        queue[2]=factory.getRandomBlock()
+        queue[0]=factory.getRandomBlock(allcolors,colorsOp[3][1])
+        queue[1]=factory.getRandomBlock(allcolors,colorsOp[3][1])
+        queue[2]=factory.getRandomBlock(allcolors,colorsOp[3][1])
     fps=100
     #----------------------------------
     fpsClock = pygame.time.Clock()
@@ -517,13 +622,13 @@ def playing_2(screen, colorsOp, gameD,isPause):
                 if event.key ==K_p:
                     return isPAUSE
                 if event.key ==K_r:
-                    queue.append(factory.getRandomBlock())
+                    queue.append(factory.getRandomBlock(allcolors,colorsOp[3][1]))
                     gameD.gameData[0][3] = 1
                     queue.pop(0)
             elif event.type == KEYUP:
                 if event.key == K_DOWN or event.key == K_s:
                     fps = 100
-        iniTdraw_2(screen, colorsOp, grade)
+        iniTdraw(screen, colorsOp, grade)
 
         #-------
         #方块提示1
@@ -540,7 +645,7 @@ def playing_2(screen, colorsOp, gameD,isPause):
         if not live:#如果方块消亡,向queue中添加方块,并为方块重新赋值
             #写入方块数据,同时获取新方块
             queue[0]. writeData(gameD)
-            queue.append(factory.getRandomBlock())
+            queue.append(factory.getRandomBlock(allcolors,colorsOp[3][1]))
             gameD.gameData[0][3]=1
             queue.pop(0)
         dirc=0
